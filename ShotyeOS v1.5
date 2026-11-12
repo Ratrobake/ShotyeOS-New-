@@ -1,0 +1,115 @@
+
+import os
+import time
+import random
+
+VERSION = "1.5"
+
+def clear():
+    os.system("clear")
+
+def boot():
+    clear()
+    print("""
+  ███████╗██╗  ██╗ ██████╗
+  ██╔════╝██║  ██║██╔═══██╗
+  ███████╗███████║██║   ██║
+  ╚════██║██╔══██║██║   ██║
+  ███████║██║  ██║╚██████╔╝
+  ╚══════╝╚═╝  ╚═╝ ╚═════╝
+
+       S H O T Y E O S
+          VERSION 1.5
+    """)
+    print("Iniciando ShotyeOS...")
+    time.sleep(1)
+    print("Cargando kernel...")
+    time.sleep(0.5)
+    print("Iniciando servicios...")
+    time.sleep(0.5)
+    print("Sistema iniciado correctamente.")
+    time.sleep(1)
+
+def help_menu():
+    print("""
+COMANDOS DISPONIBLES
+
+help       - Mostrar comandos
+about      - Información del sistema
+time       - Ver hora
+date       - Ver fecha
+calc       - Calculadora
+random     - Número aleatorio
+clear      - Limpiar terminal
+echo       - Mostrar texto
+shutdown   - Apagar sistema
+reboot     - Reiniciar sistema
+""")
+
+def shell():
+    while True:
+        cmd = input("\nShotyeOS@user:~$ ").strip()
+
+        if cmd == "help":
+            help_menu()
+
+        elif cmd == "about":
+            print("ShotyeOS 1.5")
+            print("Sistema operativo simulado")
+            print("Kernel: Shotye Kernel 1.5")
+            print("Arquitectura: Python")
+
+        elif cmd == "time":
+            print(time.strftime("%H:%M:%S"))
+
+        elif cmd == "date":
+            print(time.strftime("%d/%m/%Y"))
+
+        elif cmd == "calc":
+            try:
+                a = float(input("Primer número: "))
+                op = input("Operación (+,-,*,/): ")
+                b = float(input("Segundo número: "))
+
+                if op == "+":
+                    print(a + b)
+                elif op == "-":
+                    print(a - b)
+                elif op == "*":
+                    print(a * b)
+                elif op == "/":
+                    print(a / b)
+                else:
+                    print("Operación desconocida")
+            except ZeroDivisionError:
+                print("Error: división entre cero")
+            except ValueError:
+                print("Entrada inválida")
+
+        elif cmd == "random":
+            print(random.randint(1, 100))
+
+        elif cmd == "echo":
+            print(input("Texto: "))
+
+        elif cmd == "clear":
+            clear()
+
+        elif cmd == "about":
+            print("ShotyeOS 1.5")
+
+        elif cmd == "shutdown":
+            print("Apagando ShotyeOS...")
+            break
+
+        elif cmd == "reboot":
+            boot()
+
+        elif cmd == "":
+            continue
+
+        else:
+            print("Comando no reconocido:", cmd)
+
+boot()
+shell()
